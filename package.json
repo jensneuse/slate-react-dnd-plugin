@@ -1,0 +1,51 @@
+{
+  "name": "slate-react-dnd-plugin",
+  "version": "1.0.0",
+  "description": "A plugin to integrate react-dnd into the slate.js ecosphere.",
+  "main": "dist\\index.js",
+  "types": "dist\\index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node_modules\\.bin\\tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jensneuse/slate-react-dnd-plugin.git"
+  },
+  "keywords": [
+    "slate",
+    "slate-react",
+    "react-dnd",
+    "react",
+    "drag",
+    "drop",
+    "drag&drop",
+    "dnd",
+    "typescript",
+    "ts"
+  ],
+  "author": "Jens Neuse",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jensneuse/slate-react-dnd-plugin/issues"
+  },
+  "homepage": "https://github.com/jensneuse/slate-react-dnd-plugin#readme",
+  "dependencies": {
+    "@types/react": "^16.0.34",
+    "@types/react-dnd": "^2.0.34",
+    "@types/react-dnd-html5-backend": "^2.1.8",
+    "@types/react-dom": "^16.0.3",
+    "@types/recompose": "^0.24.4",
+    "immutable": "^3.8.2",
+    "react": "^16.2.0",
+    "react-dnd": "^2.5.4",
+    "react-dnd-html5-backend": "^2.5.4",
+    "react-dom": "^16.2.0",
+    "recompose": "^0.26.0",
+    "slate-react": "^0.11.1"
+  },
+  "devDependencies": {
+    "create-react-app": "^1.5.0",
+    "typescript": "^2.6.2"
+  }
+}
