@@ -2,7 +2,7 @@ import * as React from 'react'
 import {Editor} from 'slate-react'
 import {Value} from 'slate'
 
-import {ReactDnDPlugin} from "../dist/index"
+import {ReactDnDPlugin} from "../../dist/index"
 
 const initialValue = Value.fromJSON({
     document: {
@@ -31,23 +31,27 @@ class ParagraphNode extends React.Component {
     }
 }
 
-const plugins = [
-    ReactDnDPlugin({
-        renderNodeBlock: (props) => {
-            switch (props.node.type) {
-                case 'paragraph':
-                    return <ParagraphNode {...props} />;
-            }
+const dndPlugin = ReactDnDPlugin({
+    renderNodeBlock: (props) => {
+        switch (props.node.type) {
+            case 'paragraph':
+                return <ParagraphNode {...props} />;
+            default:
+                return null;
         }
-    })
+    }
+});
+
+const plugins = [
+   dndPlugin,
+   ...dndPlugin.plugins
 ];
 
 class StoryEditor extends React.Component {
+
     state = {
         value: initialValue
     };
-
-    editor
 
     onChange({value}){
         this.setState({value})
@@ -55,7 +59,10 @@ class StoryEditor extends React.Component {
 
     render(){
         return (
-            <Editor plugins={plugins} />
+            <Editor
+                value={this.state.value}
+                plugins={plugins}
+                onChange={this.onChange.bind(this)}/>
         )
     }
 }
