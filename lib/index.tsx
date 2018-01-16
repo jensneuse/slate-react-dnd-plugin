@@ -1,18 +1,19 @@
 import * as React from "react"
 
-import DnDBlock from "./block"
+import DnDBlock,{BlockProps} from "./block"
 import Container from "./container"
 import {Editor} from "slate-react"
 
 export interface Options {
-    renderNodeBlock: (props: any) => React.ReactElement<any>
+    renderNodeBlock: (props: any) => React.ReactNode,
+    renderNode?: (props:any) => React.Component<BlockProps,{}>
 }
 
 export interface Plugin {
-    renderNode: (props: any) => React.ReactElement<any>,
+    renderNode: (props: any) => React.ReactNode,
     plugins: [
         {
-            renderEditor: (props: any,editor: Editor) => React.ReactElement<any>
+            renderEditor: (props: any,editor: Editor) => React.ReactNode
         }
     ]
 }
@@ -20,12 +21,17 @@ export interface Plugin {
 export const ReactDnDPlugin = function (options: Options): Plugin {
     return {
         renderNode: (props: any) => {
-            return <DnDBlock >{options.renderNodeBlock(props)}</DnDBlock>
+
+            if (options.renderNode){
+                return options.renderNode(props);
+            }
+
+            return <DnDBlock editor={props.editor} >{options.renderNodeBlock(props)}</DnDBlock>
         },
         plugins: [
             {
-                renderEditor: (props:any,editor:Editor) => {
-                    return <Container {...props} editor={editor} />
+                renderEditor: (props:any,editor: Editor) => {
+                    return <Container editor={editor} {...props} />
                 }
             }
         ]

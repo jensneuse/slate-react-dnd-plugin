@@ -14,12 +14,15 @@ var container_1 = require("./container");
 exports.ReactDnDPlugin = function (options) {
     return {
         renderNode: function (props) {
-            return React.createElement(block_1.default, null, options.renderNodeBlock(props));
+            if (options.renderNode) {
+                return options.renderNode(props);
+            }
+            return React.createElement(block_1.default, { editor: props.editor }, options.renderNodeBlock(props));
         },
         plugins: [
             {
                 renderEditor: function (props, editor) {
-                    return React.createElement(container_1.default, __assign({}, props, { editor: editor }));
+                    return React.createElement(container_1.default, __assign({ editor: editor }, props));
                 }
             }
         ]

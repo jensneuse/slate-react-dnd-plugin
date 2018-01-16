@@ -80,8 +80,8 @@ const cardTarget = {
 };
 
 export interface BlockProps {
-    connectDragSource: (arg: any) => React.ReactElement<any>,
-    connectDropTarget: (arg: any) => React.ReactElement<any>,
+    connectDragSource: (arg: any) => React.ReactNode,
+    connectDropTarget: (arg: any) => React.ReactNode,
     isDragging: boolean,
     moveCard: ()=>{},
     editor: any,
@@ -96,7 +96,7 @@ class Block extends React.Component<BlockProps,{}> {
     }
 }
 
-export default compose<BlockProps,{}>(
+export default compose<BlockProps,{editor: any}>(
     DropTarget(TARGET, cardTarget, connect => ({
         connectDropTarget: connect.dropTarget(),
     })),

@@ -20,7 +20,7 @@ var Container = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Container.prototype.render = function () {
-        return this.props.children;
+        return React.cloneElement(this.props.children, { editor: this.props.editor });
     };
     return Container;
 }(React.Component));

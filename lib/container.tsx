@@ -5,15 +5,16 @@ import {compose} from "recompose"
 import {Editor} from 'slate-react'
 
 export interface ContainerProps {
-    editor: Editor
+    editor: Editor,
+    children: React.ReactElement<any>
 }
 
-class Container extends React.Component {
+class Container extends React.Component<ContainerProps> {
     render(){
-        return this.props.children;
+        return React.cloneElement(this.props.children,{editor: this.props.editor})
     }
 }
 
-export default compose<{},{}>(
+export default compose<ContainerProps,{}>(
     DragDropContext(HTML5Backend)
 )(Container)
