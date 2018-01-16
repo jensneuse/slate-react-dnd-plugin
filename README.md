@@ -11,4 +11,4 @@ bower install slate-react-dnd-plugin --save
 ## Usage
 ```
 see example dir
-´´´
+```
