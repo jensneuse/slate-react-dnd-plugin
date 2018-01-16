@@ -9,5 +9,6 @@ yarn add slate-react-dnd-plugin
 bower install slate-react-dnd-plugin --save
 ```
 ## Usage
-
+```
 see example dir
+´´´
