@@ -1,12 +1,12 @@
 {
   "name": "slate-react-dnd-plugin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A plugin to integrate react-dnd into the slate.js ecosphere.",
-  "main": "dist\\index.js",
-  "types": "dist\\index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node_modules\\.bin\\tsc"
+    "build": "node_modules/.bin/tsc"
   },
   "repository": {
     "type": "git",
