@@ -13,6 +13,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var PropTypes = require("prop-types");
 var block_1 = require("./block");
+var drag_preview_block_1 = require("./drag-preview-block");
+exports.DragPreviewBlock = drag_preview_block_1.default;
 var EditorSetter = /** @class */ (function (_super) {
     __extends(EditorSetter, _super);
     function EditorSetter() {

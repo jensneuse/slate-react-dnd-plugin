@@ -1,7 +1,8 @@
 /// <reference types="react" />
 import * as React from "react";
-import { BlockProps } from "./block";
 import { Editor } from "slate-react";
+import { BlockProps } from "./block";
+export { default as DragPreviewBlock } from "./drag-preview-block";
 export interface Options {
     renderNode?: (props: any) => React.Component<BlockProps, {}>;
     renderNodeFunctions?: [(props: any) => React.ReactNode];

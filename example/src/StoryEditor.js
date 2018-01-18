@@ -2,7 +2,8 @@ import * as React from 'react'
 import {Editor} from 'slate-react'
 import {Value} from 'slate'
 
-import {inject} from "../../dist/index"
+import {inject} from "slate-react-dnd-plugin"
+//import {inject} from "../../dist/index"
 
 const initialValue = Value.fromJSON({
     document: {
