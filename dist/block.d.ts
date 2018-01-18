@@ -7,8 +7,11 @@ export interface BlockProps {
     moveCard: () => {};
     editor: any;
     children: any;
+    renderBlock: (isDragging: boolean, children: any) => React.ReactNode;
 }
-declare const _default: React.ComponentClass<{
+export interface ExternalBlockProps {
     editor: any;
-}>;
+    renderBlock: (isDragging: boolean, children: any) => React.ReactNode;
+}
+declare const _default: React.ComponentClass<ExternalBlockProps>;
 export default _default;

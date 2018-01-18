@@ -4,27 +4,28 @@ import {compose} from "recompose"
 
 import {TARGET} from "./const"
 
-const style = {
-	backgroundColor: 'white',
-	cursor: 'move',
-}
-
 export interface DragPreviewBlockProps {
     connectDragSource: ConnectDragSource,
     connectDragPreview: ConnectDragPreview,
     isDragging: boolean,
-    renderPreview?: () => React.ReactElement<any>
+    renderPreview?: (props:any,connectDragPreview: ConnectDragPreview) => any,
+    renderBlock: (isDragging: boolean,children:any) => any
 }
 
 export interface DragPreviewBlockExternalProps {
-    renderPreview?: () => React.ReactElement<any>
+    renderPreview?: (props:any,connectDragPreview: ConnectDragPreview) => React.ReactElement<any>,
+    onHover: (hoverIndex: number,item:any,parent:any, change:any) => {},
+    renderBlock: (isDragging: boolean,children:any) => any
 }
 
 interface DragPreviewBlockState {}
 
 const DragPreviewBlockSource = {
-    beginDrag(props:any,monitor:any,component:any){
-        return {}
+    beginDrag(props:DragPreviewBlockExternalProps,monitor:any,component:any){
+        console.log('beginDragPreview',props);
+        return {
+            onHover: props.onHover
+        }
     },
     endDrag(props : any, monitor : any, component : any){
         console.log('endDragPreview', props);
@@ -36,19 +37,17 @@ const DragPreviewBlockSource = {
 
 class DragPreviewBlock extends React.Component<DragPreviewBlockProps,DragPreviewBlockState> {
 
-    componentDidMount(){
-        if (this.props.renderPreview){
-            this.props.connectDragPreview(this.props.renderPreview());
+    componentDidMount() {
+		if (this.props.renderPreview){
+            this.props.renderPreview(this.props,this.props.connectDragPreview);
         }
-    }
+	}
 
     render(){
         const { isDragging, connectDragSource, children } = this.props
-		const opacity = isDragging ? 0.4 : 1
-
-		return connectDragSource(
-			<div style={{ ...style, opacity }}>{children}</div>,
-		)
+        const opacity = isDragging ? 0.4 : 1
+        
+        return connectDragSource(this.props.renderBlock(isDragging,children));
     }
 }
 

@@ -18,7 +18,9 @@ body {
 }
 
 .dragItem {
-  width: 50px;
-  height: 50px;
   background-color: chartreuse
+}
+
+.dustbin {
+  background-color: red
 }

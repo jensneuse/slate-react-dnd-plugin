@@ -1,6 +1,6 @@
 {
   "name": "slate-react-dnd-plugin",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A plugin to integrate react-dnd into the slate.js ecosphere.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -47,7 +47,9 @@
     "slate-react": "^0.11.1"
   },
   "devDependencies": {
+    "@types/prop-types": "^15.5.2",
     "create-react-app": "^1.5.0",
+    "prop-types": "^15.6.0",
     "typescript": "^2.6.2"
   }
 }

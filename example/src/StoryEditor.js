@@ -31,6 +31,14 @@ class ParagraphNode extends React.Component {
     }
 }
 
+const blockStyle = {
+    border: '1px dashed gray',
+    padding: '0.5rem 1rem',
+    marginBottom: '.5rem',
+    backgroundColor: 'white',
+    cursor: 'move'
+};
+
 const plugins = inject([
     {
         renderNode: (props) => {
@@ -42,7 +50,17 @@ const plugins = inject([
             }
         }
     }
-],{});
+],{
+    renderBlock: (isDragging,children) => {
+
+        const opacity = isDragging? 0 : 1;
+
+        return <div style={{
+            ...blockStyle,
+            opacity
+        }}>{children}</div>
+    }
+});
 
 class StoryEditor extends React.Component {
 

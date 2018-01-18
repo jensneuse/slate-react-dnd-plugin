@@ -1,22 +1,43 @@
 import * as React from "react"
-
+import * as PropTypes from "prop-types"
 import DnDBlock, { BlockProps } from "./block"
 import Container from "./container"
 import { Editor } from "slate-react"
 
 export interface Options {
-    //renderNodeBlock: (props: any) => React.ReactNode,
     renderNode?: (props: any) => React.Component<BlockProps, {}>,
-    renderNodeFunctions?: [(props:any) => React.ReactNode]
+    renderNodeFunctions?: [(props:any) => React.ReactNode],
+    renderBlock: (isDragging:boolean,children: any) => React.ReactNode
 }
 
 export interface Plugin {
     renderNode: (props: any) => React.ReactNode,
-    /*plugins: [
+    plugins: [
         {
             renderEditor: (props: any, editor: Editor) => React.ReactNode
         }
-    ]*/
+    ]
+}
+
+interface EditorSetterProps {
+    editor: any
+}
+
+interface EditorSetterState {}
+
+class EditorSetter extends React.Component<EditorSetterProps,EditorSetterState> {
+
+    static contextTypes = {
+        setEditor: PropTypes.func
+    }
+
+    componentDidMount(){
+        this.context.setEditor(this.props.editor);
+    }
+
+    render(){
+        return this.props.children;
+    }
 }
 
 export const ReactDnDPlugin = function (options: Options): Plugin {
@@ -31,20 +52,20 @@ export const ReactDnDPlugin = function (options: Options): Plugin {
                 for (var i=0;i<options.renderNodeFunctions.length;i++){
                     let rendered = options.renderNodeFunctions[i](props);
                     if (rendered){
-                        return <DnDBlock editor={props.editor} >{rendered}</DnDBlock>
+                        return <DnDBlock renderBlock={options.renderBlock} editor={props.editor} >{rendered}</DnDBlock>
                     }
                 }
             }
-
+            
             console.log('renderNode fn missing for type: ',props.node.type);
-        }/*,
+        } ,
         plugins: [
             {
                 renderEditor: (props: any, editor: Editor) => {
-                    return (<Container editor={editor} {...props} />)
+                    return <EditorSetter editor={editor}>{props.children}</EditorSetter>;
                 }
             }
-        ]*/
+        ]
     }
 }
 
@@ -73,5 +94,5 @@ export const inject = (plugins: [any],options: Options) => {
 
     const dndPlugin = ReactDnDPlugin(options);
 
-    return [dndPlugin,...plugins]
+    return [dndPlugin,...dndPlugin.plugins,...plugins]
 }

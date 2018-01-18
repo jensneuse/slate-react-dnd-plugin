@@ -9,8 +9,9 @@ export interface ContainerProps {
 }
 
 class Container extends React.Component<ContainerProps> {
+
     render(){
-        return React.cloneElement(this.props.children,{...this.props})
+        return this.props.children;
     }
 }
 

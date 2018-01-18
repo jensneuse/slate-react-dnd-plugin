@@ -6,10 +6,13 @@ export interface DragPreviewBlockProps {
     connectDragSource: ConnectDragSource;
     connectDragPreview: ConnectDragPreview;
     isDragging: boolean;
-    renderPreview?: () => React.ReactElement<any>;
+    renderPreview?: (props: any, connectDragPreview: ConnectDragPreview) => any;
+    renderBlock: (isDragging: boolean, children: any) => any;
 }
 export interface DragPreviewBlockExternalProps {
-    renderPreview?: () => React.ReactElement<any>;
+    renderPreview?: (props: any, connectDragPreview: ConnectDragPreview) => React.ReactElement<any>;
+    onHover: (hoverIndex: number, item: any, parent: any, change: any) => {};
+    renderBlock: (isDragging: boolean, children: any) => any;
 }
 declare const _default: React.ComponentClass<DragPreviewBlockExternalProps>;
 export default _default;
