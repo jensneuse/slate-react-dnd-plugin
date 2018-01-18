@@ -12,11 +12,11 @@ export interface Options {
 
 export interface Plugin {
     renderNode: (props: any) => React.ReactNode,
-    plugins: [
+    /*plugins: [
         {
             renderEditor: (props: any, editor: Editor) => React.ReactNode
         }
-    ]
+    ]*/
 }
 
 export const ReactDnDPlugin = function (options: Options): Plugin {
@@ -37,14 +37,14 @@ export const ReactDnDPlugin = function (options: Options): Plugin {
             }
 
             console.log('renderNode fn missing for type: ',props.node.type);
-        },
+        }/*,
         plugins: [
             {
                 renderEditor: (props: any, editor: Editor) => {
                     return (<Container editor={editor} {...props} />)
                 }
             }
-        ]
+        ]*/
     }
 }
 
@@ -73,5 +73,5 @@ export const inject = (plugins: [any],options: Options) => {
 
     const dndPlugin = ReactDnDPlugin(options);
 
-    return [dndPlugin,...dndPlugin.plugins,...plugins]
+    return [dndPlugin,...plugins]
 }

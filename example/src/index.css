@@ -3,3 +3,22 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 80% 20%
+}
+
+.editor {
+  background-color: antiquewhite;
+}
+
+.rightMenu {
+  background-color: beige;
+}
+
+.dragItem {
+  width: 50px;
+  height: 50px;
+  background-color: chartreuse
+}

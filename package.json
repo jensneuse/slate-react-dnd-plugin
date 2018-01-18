@@ -6,7 +6,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node_modules/.bin/tsc"
+    "build": "node_modules/.bin/tsc",
+    "watch": "node_modules/.bin/tsc --watch"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,7 @@
     "react-dnd-html5-backend": "^2.5.4",
     "react-dom": "^16.2.0",
     "recompose": "^0.26.0",
+    "slate": "^0.32.1",
     "slate-react": "^0.11.1"
   },
   "devDependencies": {

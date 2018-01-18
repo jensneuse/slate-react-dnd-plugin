@@ -1,0 +1,1 @@
+export const TARGET: string = 'DND_BLOCK';
