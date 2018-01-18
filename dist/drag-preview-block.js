@@ -16,13 +16,11 @@ var recompose_1 = require("recompose");
 var const_1 = require("./const");
 var DragPreviewBlockSource = {
     beginDrag: function (props, monitor, component) {
-        console.log('beginDragPreview', props);
         return {
             onHover: props.onHover
         };
     },
     endDrag: function (props, monitor, component) {
-        console.log('endDragPreview', props);
         return {
             key: props.children.key
         };

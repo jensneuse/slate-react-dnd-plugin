@@ -22,13 +22,11 @@ interface DragPreviewBlockState {}
 
 const DragPreviewBlockSource = {
     beginDrag(props:DragPreviewBlockExternalProps,monitor:any,component:any){
-        console.log('beginDragPreview',props);
         return {
             onHover: props.onHover
         }
     },
     endDrag(props : any, monitor : any, component : any){
-        console.log('endDragPreview', props);
         return {
             key: props.children.key
         }

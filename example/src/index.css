@@ -18,9 +18,10 @@ body {
 }
 
 .dragItem {
-  background-color: chartreuse
+  background-color: chartreuse;
 }
 
 .dustbin {
-  background-color: red
+  background-color: red;
+  cursor: pointer
 }
