@@ -25,9 +25,12 @@ var cardSource = {
     }
 };
 var getIndex = function (nodes, val) {
+    if (!val) {
+        return -1;
+    }
     if (nodes && nodes.length) {
         for (var i = 0; i < nodes.length; i++) {
-            if (nodes[i].key && val == nodes[i].key) {
+            if (nodes[i] && nodes[i].key && val == nodes[i].key) {
                 return i;
             }
         }

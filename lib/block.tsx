@@ -17,10 +17,14 @@ const cardSource = {
 
 const getIndex = (nodes: any, val: any): number => {
 
+    if (!val){
+        return -1;
+    }
+
     if (nodes && nodes.length) {
         for (let i: number = 0; i < nodes.length; i++) {
 
-            if (nodes[i].key && val == nodes[i].key) {
+            if (nodes[i] && nodes[i].key && val == nodes[i].key) {
                 return i;
             }
         }
