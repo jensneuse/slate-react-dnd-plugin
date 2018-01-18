@@ -63,7 +63,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <DragDropContainer>
-          <EdititorProvider>
+          <EditorProvider>
             <div className="wrapper">
               <div className="editor">
                 <StoryEditor/>
@@ -81,7 +81,7 @@ class App extends Component {
                 </DropBlock>
               </div>
             </div>
-          </EdititorProvider>
+          </EditorProvider>
         </DragDropContainer>
       </div>
     );

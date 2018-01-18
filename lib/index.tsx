@@ -6,9 +6,9 @@ import DnDBlock, { BlockProps } from "./block"
 import Container from "./container"
 
 export {default as DragPreviewBlock} from "./drag-preview-block"
-import {default as DragDropContainer} from "./container"
-import {default as DropBlock} from "./drop-block"
-import {default as EditorProvider} from "./editor-provider"
+export {default as DragDropContainer} from "./container"
+export {default as DropBlock} from "./drop-block"
+export {default as EditorProvider} from "./editor-provider"
 
 export interface Options {
     renderNode?: (props: any) => React.Component<BlockProps, {}>,

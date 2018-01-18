@@ -14,7 +14,8 @@ import * as React from 'react'
 import {Editor} from 'slate-react'
 import {Value} from 'slate'
 
-import {inject} from "../../dist/index"
+import {inject} from "slate-react-dnd-plugin"
+//import {inject} from "../../dist/index"
 
 const initialValue = Value.fromJSON({
     document: {
@@ -103,10 +104,16 @@ import logo from './logo.svg';
 import './App.css';
 
 import StoryEditor from "./StoryEditor"
-import DragPreviewBlock from "../../dist/drag-preview-block"
+
+import {DragPreviewBlock} from "slate-react-dnd-plugin"
+import {DragDropContainer} from "slate-react-dnd-plugin"
+import {DropBlock} from "slate-react-dnd-plugin"
+import {EditorProvider} from "slate-react-dnd-plugin"
+
+/*import DragPreviewBlock from "../../dist/drag-preview-block"
 import DragDropContainer from "../../dist/container"
 import DropBlock from "../../dist/drop-block"
-import EdititorProvider from "../../dist/editor-provider"
+import EdititorProvider from "../../dist/editor-provider"*/
 
 const insertBlockFn = (hoverIndex, item, parent, change) => {
 
@@ -157,7 +164,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <DragDropContainer>
-          <EdititorProvider>
+          <EditorProvider>
             <div className="wrapper">
               <div className="editor">
                 <StoryEditor/>
@@ -175,7 +182,7 @@ class App extends Component {
                 </DropBlock>
               </div>
             </div>
-          </EdititorProvider>
+          </EditorProvider>
         </DragDropContainer>
       </div>
     );
