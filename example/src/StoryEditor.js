@@ -2,8 +2,8 @@ import * as React from 'react'
 import {Editor} from 'slate-react'
 import {Value} from 'slate'
 
-import {inject} from "slate-react-dnd-plugin"
-//import {inject} from "../../dist/index"
+//import {inject} from "slate-react-dnd-plugin"
+import {inject} from "../../dist/index"
 
 const initialValue = Value.fromJSON({
     document: {
@@ -34,10 +34,20 @@ class ParagraphNode extends React.Component {
 
 const blockStyle = {
     border: '1px dashed gray',
-    padding: '0.5rem 1rem',
     marginBottom: '.5rem',
     backgroundColor: 'white',
-    cursor: 'move'
+    cursor: 'move',
+    opacity: 1
+};
+
+const draggingBlockStyle = {
+    border: '1px dashed gray',
+    paddingBottom: '16px',
+    paddingTop: '16px',
+    marginBottom: '.5rem',
+    backgroundColor: 'white',
+    cursor: 'move',
+    opacity: 0.5
 };
 
 const plugins = inject([
@@ -54,12 +64,8 @@ const plugins = inject([
 ],{
     renderBlock: (isDragging,children) => {
 
-        const opacity = isDragging? 0 : 1;
-
-        return <div style={{
-            ...blockStyle,
-            opacity
-        }}>{children}</div>
+        const style = isDragging? draggingBlockStyle : blockStyle;
+        return <div style={style}>{children}</div>
     }
 });
 

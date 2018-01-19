@@ -4,15 +4,10 @@ import './App.css';
 
 import StoryEditor from "./StoryEditor"
 
-import {DragPreviewBlock} from "slate-react-dnd-plugin"
-import {DragDropContainer} from "slate-react-dnd-plugin"
-import {DropBlock} from "slate-react-dnd-plugin"
-import {EditorProvider} from "slate-react-dnd-plugin"
-
-/*import DragPreviewBlock from "../../dist/drag-preview-block"
+import DragPreviewBlock from "../../dist/drag-preview-block"
 import DragDropContainer from "../../dist/container"
 import DropBlock from "../../dist/drop-block"
-import EdititorProvider from "../../dist/editor-provider"*/
+import EditorProvider from "../../dist/editor-provider"
 
 const insertBlockFn = (hoverIndex, item, parent, change) => {
 
@@ -50,7 +45,7 @@ const previewBlockStyle = {
 }
 
 const renderPreviewBlock = (isDragging,children) => {
-  const opacity = isDragging ? 0.4 : 1
+  const opacity = isDragging ? 0.5 : 1
   return <div style={{ ...previewBlockStyle, opacity }}>{children}</div>
 }
 

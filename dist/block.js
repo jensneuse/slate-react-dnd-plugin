@@ -13,15 +13,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var react_dnd_1 = require("react-dnd");
 var recompose_1 = require("recompose");
+var react_dom_1 = require("react-dom");
 var const_1 = require("./const");
 var cardSource = {
     beginDrag: function (props, monitor, component) {
         return { key: props.children.key };
     },
     endDrag: function (props, monitor, component) {
-        return {
-            key: props.children.key
-        };
+        return { key: props.children.key };
     }
 };
 var getIndex = function (nodes, val) {
@@ -65,6 +64,22 @@ var cardTarget = {
         }
         else {
             if (props.children.key === item.key) {
+                changing = false;
+                return;
+            }
+            var dragIndex = getIndex(props.editor.state.value.document.nodes._tail.array, item.key);
+            // Determine rectangle on screen
+            var hoverBoundingRect = react_dom_1.findDOMNode(component).getBoundingClientRect();
+            // Get vertical middle
+            //const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+            // Determine mouse position
+            var clientOffset = monitor.getClientOffset();
+            //console.log(dragIndex,hoverIndex,hoverBoundingRect,clientOffset);
+            var offset = hoverBoundingRect.height * 0.25;
+            var windowTop = hoverBoundingRect.top + offset;
+            var windowBottom = hoverBoundingRect.bottom - offset;
+            console.log('hover', windowTop, windowBottom, offset, clientOffset.y, dragIndex, hoverIndex);
+            if (clientOffset.y > windowTop && clientOffset.y < windowBottom) {
                 changing = false;
                 return;
             }
