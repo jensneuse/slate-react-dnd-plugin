@@ -5,10 +5,17 @@ import { Editor } from "slate-react"
 import DnDBlock, { BlockProps } from "./block"
 import Container from "./container"
 
-export {default as DragPreviewBlock} from "./drag-preview-block"
-export {default as DragDropContainer} from "./container"
-export {default as DropBlock} from "./drop-block"
-export {default as EditorProvider} from "./editor-provider"
+import DragPreviewBlock from "./drag-preview-block"
+import DragDropContainer from "./container"
+import DropBlock from "./drop-block"
+import EditorProvider from "./editor-provider"
+
+export {
+    DragPreviewBlock,
+    DragDropContainer,
+    DropBlock,
+    EditorProvider
+}
 
 export interface Options {
     renderNode?: (props: any) => React.Component<BlockProps, {}>,
