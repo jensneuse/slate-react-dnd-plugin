@@ -3,6 +3,9 @@ import * as React from "react";
 import { Editor } from "slate-react";
 import { BlockProps } from "./block";
 export { default as DragPreviewBlock } from "./drag-preview-block";
+export { default as DragDropContainer } from "./container";
+export { default as DropBlock } from "./drop-block";
+export { default as EditorProvider } from "./editor-provider";
 export interface Options {
     renderNode?: (props: any) => React.Component<BlockProps, {}>;
     renderNodeFunctions?: [(props: any) => React.ReactNode];

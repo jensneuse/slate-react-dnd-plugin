@@ -15,6 +15,12 @@ var PropTypes = require("prop-types");
 var block_1 = require("./block");
 var drag_preview_block_1 = require("./drag-preview-block");
 exports.DragPreviewBlock = drag_preview_block_1.default;
+var container_1 = require("./container");
+exports.DragDropContainer = container_1.default;
+var drop_block_1 = require("./drop-block");
+exports.DropBlock = drop_block_1.default;
+var editor_provider_1 = require("./editor-provider");
+exports.EditorProvider = editor_provider_1.default;
 var EditorSetter = /** @class */ (function (_super) {
     __extends(EditorSetter, _super);
     function EditorSetter() {
