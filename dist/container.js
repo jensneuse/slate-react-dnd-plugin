@@ -14,13 +14,33 @@ var React = require("react");
 var react_dnd_1 = require("react-dnd");
 var react_dnd_html5_backend_1 = require("react-dnd-html5-backend");
 var recompose_1 = require("recompose");
+var PropTypes = require("prop-types");
 var Container = /** @class */ (function (_super) {
     __extends(Container, _super);
     function Container() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.state = {
+            editor: null
+        };
+        return _this;
     }
+    Container.prototype.getChildContext = function () {
+        var that = this;
+        return {
+            getEditor: function () {
+                return that.state.editor;
+            },
+            setEditor: function (editor) {
+                that.setState({ editor: editor });
+            }
+        };
+    };
     Container.prototype.render = function () {
         return this.props.children;
+    };
+    Container.childContextTypes = {
+        setEditor: PropTypes.func,
+        getEditor: PropTypes.func
     };
     return Container;
 }(React.Component));

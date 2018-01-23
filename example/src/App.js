@@ -7,7 +7,6 @@ import StoryEditor from "./StoryEditor"
 import DragPreviewBlock from "../../dist/drag-preview-block"
 import DragDropContainer from "../../dist/container"
 import DropBlock from "../../dist/drop-block"
-import EditorProvider from "../../dist/editor-provider"
 
 const insertBlockFn = (hoverIndex, item, parent, change) => {
 
@@ -35,7 +34,6 @@ const canDrop = (props, monitor) => {
 }
 
 const onDrop = (item, parent, change) => {
-  console.log('onDrop', item, parent, change);
   change.removeNodeByKey(item.key);
 };
 
@@ -58,7 +56,6 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <DragDropContainer>
-          <EditorProvider>
             <div className="wrapper">
               <div className="editor">
                 <StoryEditor/>
@@ -76,7 +73,6 @@ class App extends Component {
                 </DropBlock>
               </div>
             </div>
-          </EditorProvider>
         </DragDropContainer>
       </div>
     );

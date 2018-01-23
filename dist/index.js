@@ -19,23 +19,21 @@ var container_1 = require("./container");
 exports.DragDropContainer = container_1.default;
 var drop_block_1 = require("./drop-block");
 exports.DropBlock = drop_block_1.default;
-var editor_provider_1 = require("./editor-provider");
-exports.EditorProvider = editor_provider_1.default;
-var EditorSetter = /** @class */ (function (_super) {
-    __extends(EditorSetter, _super);
-    function EditorSetter() {
+var DnDProvider = /** @class */ (function (_super) {
+    __extends(DnDProvider, _super);
+    function DnDProvider() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    EditorSetter.prototype.componentDidMount = function () {
+    DnDProvider.prototype.componentDidMount = function () {
         this.context.setEditor(this.props.editor);
     };
-    EditorSetter.prototype.render = function () {
+    DnDProvider.prototype.render = function () {
         return this.props.children;
     };
-    EditorSetter.contextTypes = {
+    DnDProvider.contextTypes = {
         setEditor: PropTypes.func
     };
-    return EditorSetter;
+    return DnDProvider;
 }(React.Component));
 exports.ReactDnDPlugin = function (options) {
     return {
@@ -53,10 +51,16 @@ exports.ReactDnDPlugin = function (options) {
             }
             console.log('renderNode fn missing for type: ', props.node.type);
         },
+        onChange: function (event, props, var3) {
+            //console.log('onChange',event,props);
+        },
+        onKeyDown: function (event, props) {
+            console.log('onKeyDown', props);
+        },
         plugins: [
             {
                 renderEditor: function (props, editor) {
-                    return React.createElement(EditorSetter, { editor: editor }, props.children);
+                    return React.createElement(DnDProvider, { editor: editor }, props.children);
                 }
             }
         ]

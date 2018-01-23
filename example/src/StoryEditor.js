@@ -40,16 +40,6 @@ const blockStyle = {
     opacity: 1
 };
 
-const draggingBlockStyle = {
-    border: '1px dashed gray',
-    paddingBottom: '16px',
-    paddingTop: '16px',
-    marginBottom: '.5rem',
-    backgroundColor: 'white',
-    cursor: 'move',
-    opacity: 0.5
-};
-
 const plugins = inject([
     {
         renderNode: (props) => {
@@ -63,9 +53,7 @@ const plugins = inject([
     }
 ],{
     renderBlock: (isDragging,children) => {
-
-        const style = isDragging? draggingBlockStyle : blockStyle;
-        return <div style={style}>{children}</div>
+        return <div style={blockStyle}>{children}</div>
     }
 });
 

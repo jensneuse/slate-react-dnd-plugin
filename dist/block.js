@@ -15,7 +15,7 @@ var react_dnd_1 = require("react-dnd");
 var recompose_1 = require("recompose");
 var react_dom_1 = require("react-dom");
 var const_1 = require("./const");
-var cardSource = {
+var dragSource = {
     beginDrag: function (props, monitor, component) {
         return { key: props.children.key };
     },
@@ -37,8 +37,7 @@ var getIndex = function (nodes, val) {
     return -1;
 };
 var changing = false;
-//let lastHoverIndex : number;
-var cardTarget = {
+var dragTarget = {
     hover: function (props, monitor, component) {
         if (changing || !props.children || !props.children.key) {
             return;
@@ -68,18 +67,11 @@ var cardTarget = {
                 return;
             }
             var dragIndex = getIndex(props.editor.state.value.document.nodes._tail.array, item.key);
-            // Determine rectangle on screen
             var hoverBoundingRect = react_dom_1.findDOMNode(component).getBoundingClientRect();
-            // Get vertical middle
-            //const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-            // Determine mouse position
             var clientOffset = monitor.getClientOffset();
-            //console.log(dragIndex,hoverIndex,hoverBoundingRect,clientOffset);
-            var offset = hoverBoundingRect.height * 0.25;
-            var windowTop = hoverBoundingRect.top + offset;
-            var windowBottom = hoverBoundingRect.bottom - offset;
-            console.log('hover', windowTop, windowBottom, offset, clientOffset.y, dragIndex, hoverIndex);
-            if (clientOffset.y > windowTop && clientOffset.y < windowBottom) {
+            var middle = hoverBoundingRect.bottom - (hoverBoundingRect.height / 2);
+            var mouseY = clientOffset.y;
+            if (dragIndex > hoverIndex && mouseY > middle || dragIndex < hoverIndex && mouseY < middle) {
                 changing = false;
                 return;
             }
@@ -107,9 +99,9 @@ var Block = /** @class */ (function (_super) {
     };
     return Block;
 }(React.Component));
-exports.default = recompose_1.compose(react_dnd_1.DropTarget(const_1.TARGET, cardTarget, function (connect) { return ({
+exports.default = recompose_1.compose(react_dnd_1.DropTarget(const_1.TARGET, dragTarget, function (connect) { return ({
     connectDropTarget: connect.dropTarget()
-}); }), react_dnd_1.DragSource(const_1.TARGET, cardSource, function (connect, monitor) { return ({
+}); }), react_dnd_1.DragSource(const_1.TARGET, dragSource, function (connect, monitor) { return ({
     connectDragSource: connect.dragSource(),
     isDragging: monitor.isDragging()
 }); }))(Block);

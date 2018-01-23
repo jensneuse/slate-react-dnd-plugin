@@ -8,23 +8,31 @@ import Container from "./container"
 import DragPreviewBlock from "./drag-preview-block"
 import DragDropContainer from "./container"
 import DropBlock from "./drop-block"
-import EditorProvider from "./editor-provider"
+import { DropTargetMonitor, DragSourceMonitor } from "react-dnd";
 
 export {
     DragPreviewBlock,
     DragDropContainer,
     DropBlock,
-    EditorProvider
 }
+
+/* export interface Events {
+    onDrop?(props: any, monitor?: DropTargetMonitor, component?: React.Component<any>): Object|void;
+    onHover?(props: any, monitor?: DropTargetMonitor, component?: React.Component<any>): void;
+    onBeginDrag?(props: any, monitor?: DragSourceMonitor, component?: React.Component<any>): Object;
+    onEndDrag?(props: any, monitor?: DragSourceMonitor, component?: React.Component<any>): void;
+} */
 
 export interface Options {
     renderNode?: (props: any) => React.Component<BlockProps, {}>,
     renderNodeFunctions?: [(props:any) => React.ReactNode],
-    renderBlock: (isDragging:boolean,children: any) => React.ReactNode
+    renderBlock: (isDragging:boolean,children: any) => React.ReactNode,
 }
 
 export interface Plugin {
     renderNode: (props: any) => React.ReactNode,
+    onChange: (event:any,props:any,var3:any) => void,
+    onKeyDown: (event:any,props:any) => void,
     plugins: [
         {
             renderEditor: (props: any, editor: Editor) => React.ReactNode
@@ -38,7 +46,7 @@ interface EditorSetterProps {
 
 interface EditorSetterState {}
 
-class EditorSetter extends React.Component<EditorSetterProps,EditorSetterState> {
+class DnDProvider extends React.Component<EditorSetterProps,EditorSetterState> {
 
     static contextTypes = {
         setEditor: PropTypes.func
@@ -71,11 +79,17 @@ export const ReactDnDPlugin = function (options: Options): Plugin {
             }
             
             console.log('renderNode fn missing for type: ',props.node.type);
-        } ,
+        },
+        onChange: (event: any,props:any,var3:any):void => {
+            //console.log('onChange',event,props);
+        },
+        onKeyDown: (event: any,props:any):void => {
+            console.log('onKeyDown',props);
+        },
         plugins: [
             {
                 renderEditor: (props: any, editor: Editor) => {
-                    return <EditorSetter editor={editor}>{props.children}</EditorSetter>;
+                    return <DnDProvider editor={editor}>{props.children}</DnDProvider>;
                 }
             }
         ]

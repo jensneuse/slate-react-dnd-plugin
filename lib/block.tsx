@@ -6,7 +6,7 @@ import {findDOMNode} from 'react-dom'
 
 import {TARGET} from "./const"
 
-const cardSource = {
+const dragSource = {
     beginDrag(props : any, monitor : any, component : any) {
         return {key: props.children.key}
     },
@@ -34,9 +34,8 @@ const getIndex = (nodes : any, val : any) : number => {
 };
 
 let changing : boolean = false;
-//let lastHoverIndex : number;
 
-const cardTarget = {
+const dragTarget = {
     hover(props : any, monitor : any, component : any) {
 
         if (changing || !props.children || !props.children.key) {
@@ -81,24 +80,12 @@ const cardTarget = {
 
             const dragIndex = getIndex(props.editor.state.value.document.nodes._tail.array, item.key);
 
-            // Determine rectangle on screen
             const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
-
-            // Get vertical middle
-            //const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-
-            // Determine mouse position
             const clientOffset = monitor.getClientOffset();
+            const middle = hoverBoundingRect.bottom - (hoverBoundingRect.height / 2);
+            const mouseY = clientOffset.y;
 
-            //console.log(dragIndex,hoverIndex,hoverBoundingRect,clientOffset);
-
-            const offset = hoverBoundingRect.height * 0.25;
-            const windowTop = hoverBoundingRect.top + offset;
-            const windowBottom = hoverBoundingRect.bottom - offset;
-
-            console.log('hover',windowTop,windowBottom,offset,clientOffset.y,dragIndex,hoverIndex);
-
-            if (clientOffset.y > windowTop && clientOffset.y < windowBottom){
+            if (dragIndex > hoverIndex && mouseY > middle || dragIndex < hoverIndex && mouseY < middle){
                 changing = false;
                 return;
             }
@@ -144,9 +131,9 @@ class Block extends React.Component < BlockProps, {} > {
 }
 
 export default compose < BlockProps,
-ExternalBlockProps > (DropTarget(TARGET, cardTarget, connect => ({
+ExternalBlockProps > (DropTarget(TARGET, dragTarget, connect => ({
     connectDropTarget: connect.dropTarget()
-})), DragSource(TARGET, cardSource, (connect, monitor) => ({
+})), DragSource(TARGET, dragSource, (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
     isDragging: monitor.isDragging()
 })))(Block)
