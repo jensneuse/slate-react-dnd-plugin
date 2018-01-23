@@ -71,6 +71,9 @@ var dragTarget = {
             var clientOffset = monitor.getClientOffset();
             var middle = hoverBoundingRect.bottom - (hoverBoundingRect.height / 2);
             var mouseY = clientOffset.y;
+            // if moving upwards and mouse position > 1/2 * height -> return ||
+            // if moving downwards and mouse position < 1/2 * height -> return
+            // this prevents large blocks from 'hopping' up and down
             if (dragIndex > hoverIndex && mouseY > middle || dragIndex < hoverIndex && mouseY < middle) {
                 changing = false;
                 return;

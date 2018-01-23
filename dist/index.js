@@ -51,12 +51,6 @@ exports.ReactDnDPlugin = function (options) {
             }
             console.log('renderNode fn missing for type: ', props.node.type);
         },
-        onChange: function (event, props, var3) {
-            //console.log('onChange',event,props);
-        },
-        onKeyDown: function (event, props) {
-            console.log('onKeyDown', props);
-        },
         plugins: [
             {
                 renderEditor: function (props, editor) {

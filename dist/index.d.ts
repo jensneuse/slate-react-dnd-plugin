@@ -13,8 +13,6 @@ export interface Options {
 }
 export interface Plugin {
     renderNode: (props: any) => React.ReactNode;
-    onChange: (event: any, props: any, var3: any) => void;
-    onKeyDown: (event: any, props: any) => void;
     plugins: [{
         renderEditor: (props: any, editor: Editor) => React.ReactNode;
     }];

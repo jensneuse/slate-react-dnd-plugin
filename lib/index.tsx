@@ -30,9 +30,7 @@ export interface Options {
 }
 
 export interface Plugin {
-    renderNode: (props: any) => React.ReactNode,
-    onChange: (event:any,props:any,var3:any) => void,
-    onKeyDown: (event:any,props:any) => void,
+    renderNode: (props: any) => React.ReactNode
     plugins: [
         {
             renderEditor: (props: any, editor: Editor) => React.ReactNode
@@ -79,12 +77,6 @@ export const ReactDnDPlugin = function (options: Options): Plugin {
             }
             
             console.log('renderNode fn missing for type: ',props.node.type);
-        },
-        onChange: (event: any,props:any,var3:any):void => {
-            //console.log('onChange',event,props);
-        },
-        onKeyDown: (event: any,props:any):void => {
-            console.log('onKeyDown',props);
         },
         plugins: [
             {
