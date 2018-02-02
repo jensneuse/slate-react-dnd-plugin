@@ -3,13 +3,16 @@
 Add react-dnd to slatejs.
 
 ## Installation 
+
 ```sh
 npm install slate-react-dnd-plugin --save
 yarn add slate-react-dnd-plugin
 bower install slate-react-dnd-plugin --save
 ```
+
 ## Usage
-```
+
+```ts
 import * as React from 'react'
 import {Editor} from 'slate-react'
 import {Value} from 'slate'
@@ -98,7 +101,7 @@ class StoryEditor extends React.Component {
 export default StoryEditor;
 ```
 
-```
+```ts
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
