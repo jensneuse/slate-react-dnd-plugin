@@ -2,6 +2,11 @@
 
 Add react-dnd to slatejs.
 
+## TOS
+
+- [Installation](#installation)
+- [Usage](#usage)
+
 ## Installation 
 
 ```sh
