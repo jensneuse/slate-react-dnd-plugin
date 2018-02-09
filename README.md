@@ -6,6 +6,7 @@ Add react-dnd to slatejs.
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [Contributors](#contributors)
 
 ## Installation 
 
@@ -199,3 +200,21 @@ class App extends Component {
 
 export default App;
 ```
+
+## Contributors
+
+This plugin was initially developed and maintained by one single person:
+[Jens Neuse][jens-github].
+
+These users are actively maintaining and/or developing this plugin as of today:
+
+- [Jens Neuse][jens-github] (Project Lead)
+- [Walialu][about-walialu] (Mostly Maintenance only as of now)
+- [Jonas Bergner][jonas-github] (Various improvements of the code)
+
+
+
+[jens-github]: https://github.com/jensneuse
+[about-walialu]: https://about.walialu.com/
+[jonas-github]: https://github.com/java-jonas
+
