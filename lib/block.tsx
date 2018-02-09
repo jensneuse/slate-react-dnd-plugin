@@ -12,6 +12,12 @@ const dragSource = {
     },
     endDrag(props : any, monitor : any, component : any) {
         return {key: props.children.key}
+    },
+    canDrag(props : any, monitor : any){
+        const template = props.children.type.PLUGIN_DEFAULT_TEMPLATE;
+        const draggable = template.draggable;
+        const removable = template.removable;
+        return !(draggable === false || removable === false);
     }
 };
 
@@ -84,7 +90,7 @@ const dragTarget = {
             const clientOffset = monitor.getClientOffset();
             const middle = hoverBoundingRect.bottom - (hoverBoundingRect.height / 2);
             const mouseY = clientOffset.y;
-            
+
             // if moving upwards and mouse position > 1/2 * height -> return ||
             // if moving downwards and mouse position < 1/2 * height -> return
             // this prevents large blocks from 'hopping' up and down
