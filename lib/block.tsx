@@ -6,7 +6,7 @@ import {findDOMNode} from 'react-dom'
 
 import {TARGET} from "./const"
 
-const dragSource = {
+export const dragSource = {
     beginDrag(props : any, monitor : any, component : any) {
         return {key: props.children.key}
     },
@@ -17,11 +17,12 @@ const dragSource = {
         const template = props.children.type.PLUGIN_DEFAULT_TEMPLATE;
         const draggable = template.draggable;
         const removable = template.removable;
-        return !(draggable === false || removable === false);
+        const isNeitherDraggableNorRemovable = !(draggable === false || removable === false);
+        return isNeitherDraggableNorRemovable;
     }
 };
 
-const getIndex = (nodes : any, val : any) : number => {
+export const getIndex = (nodes : any, val : any) : number => {
 
     if (!val) {
         return -1;
@@ -39,9 +40,9 @@ const getIndex = (nodes : any, val : any) : number => {
     return -1;
 };
 
-let changing : boolean = false;
+export let changing : boolean = false;
 
-const dragTarget = {
+export const dragTarget = {
     hover(props : any, monitor : any, component : any) {
 
         if (changing || !props.children || !props.children.key) {
@@ -132,7 +133,7 @@ export interface ExternalBlockProps {
     renderBlock : (isDragging : boolean, children : any) => React.ReactNode
 }
 
-class Block extends React.Component < BlockProps, {} > {
+export class Block extends React.Component < BlockProps, {} > {
     render() {
         const {connectDragSource, connectDropTarget, isDragging, children, renderBlock} = this.props;
         return connectDragSource(connectDropTarget(renderBlock(isDragging, children)));

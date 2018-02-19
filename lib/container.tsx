@@ -13,7 +13,7 @@ interface ContainerState {
     editor: any
 }
 
-class Container extends React.Component<ContainerProps,ContainerState> {
+export class Container extends React.Component<ContainerProps,ContainerState> {
 
     state = {
         editor: null

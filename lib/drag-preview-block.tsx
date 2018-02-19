@@ -20,7 +20,7 @@ export interface DragPreviewBlockExternalProps {
 
 interface DragPreviewBlockState {}
 
-const DragPreviewBlockSource = {
+export const DragPreviewBlockSource = {
     beginDrag(props:DragPreviewBlockExternalProps,monitor:any,component:any){
         return {
             onHover: props.onHover
@@ -33,7 +33,7 @@ const DragPreviewBlockSource = {
     }
 }
 
-class DragPreviewBlock extends React.Component<DragPreviewBlockProps,DragPreviewBlockState> {
+export class DragPreviewBlock extends React.Component<DragPreviewBlockProps,DragPreviewBlockState> {
 
     componentDidMount() {
 		if (this.props.renderPreview){
@@ -44,7 +44,7 @@ class DragPreviewBlock extends React.Component<DragPreviewBlockProps,DragPreview
     render(){
         const { isDragging, connectDragSource, children } = this.props
         const opacity = isDragging ? 0.4 : 1
-        
+
         return connectDragSource(this.props.renderBlock(isDragging,children));
     }
 }

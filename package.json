@@ -4,8 +4,20 @@
   "description": "A plugin to integrate react-dnd into the slate.js ecosphere.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "jest": {
+    "moduleFileExtensions": ["ts", "tsx", "js"],
+    "transform": {
+      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js",
+      "^.+\\.js$": "babel-jest"
+    },
+    "testRegex": "/tests/.*\\.(ts|tsx|js)$",
+    "testPathIgnorePatterns": ["/node_modules/", "/example"]
+  },
+  "babel": {
+    "presets": ["env", "react"]
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "node_modules/.bin/tsc",
     "watch": "node_modules/.bin/tsc --watch"
   },
@@ -13,18 +25,7 @@
     "type": "git",
     "url": "git+https://github.com/jensneuse/slate-react-dnd-plugin.git"
   },
-  "keywords": [
-    "slate",
-    "slate-react",
-    "react-dnd",
-    "react",
-    "drag",
-    "drop",
-    "drag&drop",
-    "dnd",
-    "typescript",
-    "ts"
-  ],
+  "keywords": ["slate", "slate-react", "react-dnd", "react", "drag", "drop", "drag&drop", "dnd", "typescript", "ts"],
   "author": "Jens Neuse",
   "license": "MIT",
   "bugs": {
@@ -48,8 +49,16 @@
   },
   "devDependencies": {
     "@types/prop-types": "^15.5.2",
+    "babel-jest": "^22.2.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
     "create-react-app": "^1.5.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest": "^22.3.0",
     "prop-types": "^15.6.0",
+    "react-test-renderer": "^16.2.0",
+    "ts-jest": "^22.0.4",
     "typescript": "^2.6.2"
   }
 }

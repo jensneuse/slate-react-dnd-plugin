@@ -16,7 +16,7 @@ export interface DropBlockExternalProps {
     onHover?(props: any, monitor: DropTargetMonitor, component: React.Component<any>): Object | void
 }
 
-const target = {
+export const target = {
     hover(props: any, monitor: DropTargetMonitor, component: React.Component<any>): Object | void {
         if (props.onHover){
             return props.onHover(props,monitor,component);
@@ -47,7 +47,7 @@ const target = {
     }
 };
 
-class DropBlock extends React.Component<DropBlockInternlProps & DropBlockExternalProps> {
+export class DropBlock extends React.Component<DropBlockInternlProps & DropBlockExternalProps> {
 
     static contextTypes = {
         getEditor: PropTypes.func

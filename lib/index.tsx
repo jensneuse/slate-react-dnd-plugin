@@ -44,7 +44,7 @@ interface EditorSetterProps {
 
 interface EditorSetterState {}
 
-class DnDProvider extends React.Component<EditorSetterProps,EditorSetterState> {
+export class DnDProvider extends React.Component<EditorSetterProps,EditorSetterState> {
 
     static contextTypes = {
         setEditor: PropTypes.func
@@ -66,16 +66,16 @@ export const ReactDnDPlugin = function (options: Options): Plugin {
             if (options.renderNode) {
                 return options.renderNode(props);
             }
-            
+
             if (options.renderNodeFunctions && options.renderNodeFunctions.length){
                 for (var i=0;i<options.renderNodeFunctions.length;i++){
                     let rendered = options.renderNodeFunctions[i](props);
-                    if (rendered){
+                    if (rendered){ // NOTE: ???
                         return <DnDBlock renderBlock={options.renderBlock} editor={props.editor} >{rendered}</DnDBlock>
                     }
                 }
             }
-            
+
             console.log('renderNode fn missing for type: ',props.node.type);
         },
         plugins: [
@@ -94,7 +94,7 @@ export const inject = (plugins: [any],options: Options) => {
         if (!options.renderNodeFunctions){
             options.renderNodeFunctions = [fn];
         } else {
-            options.renderNodeFunctions[options.renderNodeFunctions.length +1] = fn
+            options.renderNodeFunctions[options.renderNodeFunctions.length] = fn // NOTE: options.renderNodeFunctions.length+1 ???
         }
     }
 
@@ -105,7 +105,7 @@ export const inject = (plugins: [any],options: Options) => {
 
             if (plugins[i].plugins){
                 for (var k=0;k<plugins[i].plugins.length;k++){
-                    appendRenderNodeFuntion(plugins[i].renderNode);
+                    appendRenderNodeFuntion(plugins[i].renderNode); // NOTE: ??
                 }
             }
         }
