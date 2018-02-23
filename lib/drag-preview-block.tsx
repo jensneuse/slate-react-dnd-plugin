@@ -18,7 +18,7 @@ export interface DragPreviewBlockExternalProps {
     renderBlock: (isDragging: boolean,children:any) => any
 }
 
-interface DragPreviewBlockState {}
+export interface DragPreviewBlockState {}
 
 export const DragPreviewBlockSource = {
     beginDrag(props:DragPreviewBlockExternalProps,monitor:any,component:any){

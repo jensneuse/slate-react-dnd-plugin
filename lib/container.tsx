@@ -9,7 +9,7 @@ export interface ContainerProps {
     children: React.ReactElement<any>
 }
 
-interface ContainerState {
+export interface ContainerState {
     editor: any
 }
 

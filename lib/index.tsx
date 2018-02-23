@@ -38,13 +38,13 @@ export interface Plugin {
     ]
 }
 
-interface EditorSetterProps {
+export interface EditorSetterProps {
     editor: any
 }
 
-interface EditorSetterState {}
+export interface EditorSetterState {}
 
-export class DnDProvider extends React.Component<EditorSetterProps,EditorSetterState> {
+export class DnDProvider extends React.Component<EditorSetterProps, EditorSetterState> {
 
     static contextTypes = {
         setEditor: PropTypes.func
