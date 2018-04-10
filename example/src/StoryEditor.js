@@ -1,9 +1,9 @@
 import * as React from 'react'
-import {Editor} from 'slate-react'
-import {Value} from 'slate'
+import { Editor } from 'slate-react'
+import { Value } from 'slate'
 
 //import {inject} from "slate-react-dnd-plugin"
-import {inject} from "../../dist/index"
+import { inject } from "../../dist/index"
 
 const initialValue = Value.fromJSON({
     document: {
@@ -27,9 +27,25 @@ const initialValue = Value.fromJSON({
 });
 
 class ParagraphNode extends React.Component {
-    render(){
+    render() {
         return (<p {...this.props.attributes} >{this.props.children}</p>)
     }
+}
+
+ParagraphNode.PLUGIN_DEFAULT_TEMPLATE = {
+    object: 'block',
+    type: Math.random().toString(),
+    nodes: [{
+        object: 'text',
+        leaves: [{
+            text: "this is some text",
+        }],
+    }],
+    data: {
+        label: 'some label',
+        isPlaceholder: true,
+        placeholderText: "this is some text",
+    },
 }
 
 const blockStyle = {
@@ -51,11 +67,11 @@ const plugins = inject([
             }
         }
     }
-],{
-    renderBlock: (isDragging,children) => {
-        return <div style={blockStyle}>{children}</div>
-    }
-});
+], {
+        renderBlock: (isDragging, children) => {
+            return <div style={blockStyle}>{children}</div>
+        }
+    });
 
 class StoryEditor extends React.Component {
 
@@ -63,16 +79,16 @@ class StoryEditor extends React.Component {
         value: initialValue
     };
 
-    onChange({value}){
-        this.setState({value})
+    onChange({ value }) {
+        this.setState({ value })
     }
 
-    render(){
+    render() {
         return (
             <Editor
                 value={this.state.value}
                 plugins={plugins}
-                onChange={this.onChange.bind(this)}/>
+                onChange={this.onChange.bind(this)} />
         )
     }
 }
