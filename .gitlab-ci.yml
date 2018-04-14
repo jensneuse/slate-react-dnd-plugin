@@ -4,7 +4,7 @@ stages:
 image: node:latest
 
 before_script:
-  - npm install
+  - yarn
 
 cache:
   paths:
@@ -13,9 +13,9 @@ cache:
 build:
   stage: build
   script:
-    - npm run build
+    - yarn build
     - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
-    - npm publish
+    - yarn publish
   only:
     - tags
 
