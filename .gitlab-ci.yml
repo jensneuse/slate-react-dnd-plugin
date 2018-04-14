@@ -15,7 +15,7 @@ build:
   script:
     - yarn build
     - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
-    - yarn publish
+    - yarn publish --new-version echo $(git describe --abbrev=0 --tags | awk -F 'v' '{print $2}')
   only:
     - tags
 
